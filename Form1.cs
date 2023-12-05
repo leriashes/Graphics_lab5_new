@@ -72,5 +72,10 @@ namespace Graphics_lab5
                 brightChart.Series[0].Points.AddXY(i, brightness[i]);
             }
         }
+
+        private void trackBar1_MouseUp(object sender, MouseEventArgs e)
+        {
+            trackBar1.Value = 0;
+        }
     }
 }
