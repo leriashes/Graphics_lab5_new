@@ -12,10 +12,12 @@ namespace Graphics_lab5
         private double ccn;
         private bool negative = false;
         private bool grey = false;
+        private bool bin = false;
 
         private int Yr;
         private int Yg;
         private int Yb;
+        private double binThreshold = 0;
 
         public mainForm()
         {
@@ -236,10 +238,28 @@ namespace Graphics_lab5
                 {
                     Color pixel = CountPixel(img.GetPixel(x, y));
 
-                    if (grey)
+                    if (grey || bin)
                     {
+                        int brightness = Convert.ToInt32(Math.Round(0.299 * pixel.R + 0.587 * pixel.G + 0.114 * pixel.B));
+
                         int R, G, B;
-                        R = G = B = Convert.ToInt32(Math.Round(0.299 * pixel.R + 0.587 * pixel.G + 0.114 * pixel.B));
+
+                        if (bin)
+                        {
+                            if (brightness > binThreshold)
+                            {
+                                R = G = B = 255;
+                            }
+                            else
+                            {
+                                R = G = B = 0;
+                            }
+                        }
+                        else
+                        {
+                            R = G = B = brightness;
+                        }
+
                         pixel = Color.FromArgb(pixel.A, NormalizeColor(R), NormalizeColor(G), NormalizeColor(B));
                     }
 
@@ -254,6 +274,14 @@ namespace Graphics_lab5
         private void CheckBoxGrey_CheckedChanged(object sender, EventArgs e)
         {
             grey = checkBoxGrey.Checked;
+            DrawImage();
+        }
+
+        private void buttonBin_Click(object sender, EventArgs e)
+        {
+            bin = !bin;
+            binThreshold = 0.299 * Yr + 0.587 * Yg + 0.114 * Yb;
+
             DrawImage();
         }
     }
