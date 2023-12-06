@@ -11,6 +11,7 @@ namespace Graphics_lab5
         private int cbr;
         private double ccn;
         private bool negative = false;
+        private bool grey = false;
 
         private int Yr;
         private int Yg;
@@ -35,6 +36,8 @@ namespace Graphics_lab5
         {
             cbr = 0;
             ccn = 1;
+            negative = false;
+            grey = false;
 
             img = (Bitmap)pictureBox.Image;
             
@@ -42,6 +45,12 @@ namespace Graphics_lab5
             trackBarBrightness.Value = 0;
             trackBarContrast.Value = 0;
 
+            countChanels();
+
+        }
+
+        private void countChanels()
+        {
             double r = 0;
             double g = 0;
             double b = 0;
@@ -64,7 +73,6 @@ namespace Graphics_lab5
             Yr = Convert.ToInt32(Math.Round(r));
             Yg = Convert.ToInt32(Math.Round(g));
             Yb = Convert.ToInt32(Math.Round(b));
-
         }
 
         private int DrawBrightBarChart()
@@ -141,6 +149,12 @@ namespace Graphics_lab5
                 R = 255 - R;
                 G = 255 - G;
                 B = 255 - B;
+            }
+
+            if (grey)
+            {
+                double bright = 0.299 * R + 0.587 * G + 0.114 * B;
+                R = G = B = Convert.ToInt32(Math.Round(bright));
             }
 
             return Color.FromArgb(pixel.A, NormalizeColor(R), NormalizeColor(G), NormalizeColor(B));
@@ -261,6 +275,34 @@ namespace Graphics_lab5
             }
 
             pictureBox.Image = img_copy;
+
+            DrawBrightBarChart();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            grey = !grey;
+
+            if (grey)
+            {
+                for (int y = 0; y < img.Height; y++)
+                {
+                    for (int x = 0; x < img.Width; x++)
+                    {
+                        Color pixel = img.GetPixel(x, y);
+
+                        img.SetPixel(x, y, CountPixel(pixel));
+                    }
+                }
+
+                countChanels();
+
+                pictureBox.Image = img;
+            }
+            
+
+            grey = true;
+
 
             DrawBrightBarChart();
         }
