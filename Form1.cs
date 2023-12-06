@@ -38,10 +38,11 @@ namespace Graphics_lab5
         private void loadImage()
         {
             img = (Bitmap)pictureBox.Image;
-            drawBrightBarChart();
+            
+            brightChart.ChartAreas[0].AxisY.Maximum = drawBrightBarChart() + 100;
         }
 
-        private void drawBrightBarChart()
+        private int drawBrightBarChart()
         {
             Bitmap img_copy = (Bitmap)pictureBox.Image;
 
@@ -71,12 +72,14 @@ namespace Graphics_lab5
             {
                 brightChart.Series[0].Points.AddXY(i, brightness[i]);
             }
+
+            return brightness.Max();
         }
 
         private void trackBarBrightness_MouseUp(object sender, MouseEventArgs e)
         {
             Bitmap img_copy = new Bitmap(img);
-            cbr += trackBarBrightness.Value;
+            cbr = trackBarBrightness.Value;
 
             for (int y = 0; y < img.Height; y++)
             {
@@ -91,7 +94,7 @@ namespace Graphics_lab5
 
             drawBrightBarChart();
 
-            trackBarBrightness.Value = 0;
+            //trackBarBrightness.Value = 0;
         }
 
         private Color countPixel(Color pixel)
