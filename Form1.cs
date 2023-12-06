@@ -23,28 +23,22 @@ namespace Graphics_lab5
         public mainForm()
         {
             InitializeComponent();
+            loadImage();
         }
 
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //Get the path of specified file
-                string filePath = openFileDialog.FileName;
-
-                //Read the contents of the file into a stream
-                var fileStream = openFileDialog.OpenFile();
-
-                //using (StreamReader reader = new StreamReader(fileStream))
-                //{
-                //	fileContent = reader.ReadToEnd();
-                //}
-
                 pictureBox.Image = new Bitmap(openFileDialog.FileName);
-                img = (Bitmap)pictureBox.Image;
-
-                drawBrightBarChart();
+                loadImage();
             }
+        }
+
+        private void loadImage()
+        {
+            img = (Bitmap)pictureBox.Image;
+            drawBrightBarChart();
         }
 
         private void drawBrightBarChart()
@@ -89,43 +83,7 @@ namespace Graphics_lab5
                 for (int x = 0; x < img.Width; x++)
                 {
                     Color pixel = img.GetPixel(x, y);
-
-                    int R, G, B;
-
-                    R = pixel.R * ccn + cbr;
-
-                    if (R < 0)
-                    {
-                        R = 0;
-                    }
-                    else if (R > 255)
-                    {
-                        R = 255;
-                    }
-
-                    G = pixel.G * ccn + cbr;
-
-                    if (G < 0)
-                    {
-                        G = 0;
-                    }
-                    else if (G > 255)
-                    {
-                        G = 255;
-                    }
-
-                    B = pixel.B * ccn + cbr;
-
-                    if (B < 0)
-                    {
-                        B = 0;
-                    }
-                    else if (B > 255)
-                    {
-                        B = 255;
-                    }
-
-                    img_copy.SetPixel(x, y, Color.FromArgb(pixel.A, R, G, B));
+                    img_copy.SetPixel(x, y, countPixel(pixel));
                 }
             }
 
@@ -134,6 +92,27 @@ namespace Graphics_lab5
             drawBrightBarChart();
 
             trackBarBrightness.Value = 0;
+        }
+
+        private Color countPixel(Color pixel)
+        {
+            return Color.FromArgb(pixel.A, countColor(pixel.R), countColor(pixel.G), countColor(pixel.B));
+        }
+
+        private int countColor(byte color)
+        {
+            int new_color = color * ccn + cbr;
+
+            if (new_color < 0)
+            {
+                new_color = 0;
+            }
+            else if (new_color > 255)
+            {
+                new_color = 255;
+            }
+
+            return new_color;
         }
 
         private void trackBarBrightness_ValueChanged(object sender, EventArgs e)
