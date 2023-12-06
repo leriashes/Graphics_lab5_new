@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -38,13 +38,14 @@
             this.brightChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.trackBarBrightness = new System.Windows.Forms.TrackBar();
+            this.labelBrightness = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.brightChart)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarBrightness)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -80,19 +81,19 @@
             // 
             // brightChart
             // 
-            chartArea1.AxisX.Maximum = 255D;
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.AxisY.Minimum = 0D;
-            chartArea1.Name = "ChartArea1";
-            this.brightChart.ChartAreas.Add(chartArea1);
+            chartArea2.AxisX.Maximum = 255D;
+            chartArea2.AxisX.Minimum = 0D;
+            chartArea2.AxisY.Minimum = 0D;
+            chartArea2.Name = "ChartArea1";
+            this.brightChart.ChartAreas.Add(chartArea2);
             this.brightChart.Location = new System.Drawing.Point(6, 19);
             this.brightChart.Name = "brightChart";
             this.brightChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            series1.Name = "Series1";
-            this.brightChart.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            series2.Name = "Series1";
+            this.brightChart.Series.Add(series2);
             this.brightChart.Size = new System.Drawing.Size(590, 302);
             this.brightChart.TabIndex = 2;
             this.brightChart.Text = "chart1";
@@ -117,23 +118,35 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Изображение";
             // 
-            // trackBar1
+            // trackBarBrightness
             // 
-            this.trackBar1.LargeChange = 51;
-            this.trackBar1.Location = new System.Drawing.Point(585, 360);
-            this.trackBar1.Maximum = 255;
-            this.trackBar1.Minimum = -255;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(604, 45);
-            this.trackBar1.TabIndex = 4;
-            this.trackBar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBar1_MouseUp);
+            this.trackBarBrightness.LargeChange = 51;
+            this.trackBarBrightness.Location = new System.Drawing.Point(585, 360);
+            this.trackBarBrightness.Maximum = 255;
+            this.trackBarBrightness.Minimum = -255;
+            this.trackBarBrightness.Name = "trackBarBrightness";
+            this.trackBarBrightness.Size = new System.Drawing.Size(604, 45);
+            this.trackBarBrightness.TabIndex = 4;
+            this.trackBarBrightness.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBarBrightness.ValueChanged += new System.EventHandler(this.trackBarBrightness_ValueChanged);
+            this.trackBarBrightness.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBarBrightness_MouseUp);
+            // 
+            // labelBrightness
+            // 
+            this.labelBrightness.AutoSize = true;
+            this.labelBrightness.Location = new System.Drawing.Point(1195, 363);
+            this.labelBrightness.Name = "labelBrightness";
+            this.labelBrightness.Size = new System.Drawing.Size(13, 13);
+            this.labelBrightness.TabIndex = 5;
+            this.labelBrightness.Text = "0";
             // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1285, 515);
-            this.Controls.Add(this.trackBar1);
+            this.Controls.Add(this.labelBrightness);
+            this.Controls.Add(this.trackBarBrightness);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip);
@@ -146,7 +159,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.brightChart)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarBrightness)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,7 +174,8 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart brightChart;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar trackBarBrightness;
+        private System.Windows.Forms.Label labelBrightness;
     }
 }
 
