@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Graphics_lab5
 {
@@ -19,6 +10,7 @@ namespace Graphics_lab5
         private Bitmap img;
         private int cbr;
         private double ccn;
+        private bool negative = false;
 
         private int Yr;
         private int Yg;
@@ -112,7 +104,16 @@ namespace Graphics_lab5
         private void TrackBarBrightness_MouseUp(object sender, MouseEventArgs e)
         {
             Bitmap img_copy = new Bitmap(img);
-            cbr += trackBarBrightness.Value;
+            
+
+            if (negative)
+            {
+                cbr -= trackBarBrightness.Value;
+            }
+            else
+            {
+                cbr += trackBarBrightness.Value;
+            }
 
             for (int y = 0; y < img.Height; y++)
             {
@@ -134,6 +135,13 @@ namespace Graphics_lab5
             int R = Convert.ToInt32(Math.Round(pixel.R * ccn + cbr + (1 - ccn) * Yr));
             int G = Convert.ToInt32(Math.Round(pixel.G * ccn + cbr + (1 - ccn) * Yg));
             int B = Convert.ToInt32(Math.Round(pixel.B * ccn + cbr + (1 - ccn) * Yb));
+
+            if (negative)
+            {
+                R = 255 - R;
+                G = 255 - G;
+                B = 255 - B;
+            }
 
             return Color.FromArgb(pixel.A, NormalizeColor(R), NormalizeColor(G), NormalizeColor(B));
         }
@@ -234,6 +242,27 @@ namespace Graphics_lab5
             DrawBrightBarChart();
 
             trackBarContrast.Value = 0;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            negative = !negative;
+
+            Bitmap img_copy = new Bitmap(img);
+
+            for (int y = 0; y < img_copy.Height; y++)
+            {
+                for (int x = 0; x < img_copy.Width; x++)
+                {
+                    Color pixel = img_copy.GetPixel(x, y);
+
+                    img_copy.SetPixel(x, y, CountPixel(pixel));
+                }
+            }
+
+            pictureBox.Image = img_copy;
+
+            DrawBrightBarChart();
         }
     }
 }
