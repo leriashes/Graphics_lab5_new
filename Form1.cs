@@ -51,7 +51,10 @@ namespace Graphics_lab5
 
             CountChanels();
 
+            binThreshold = 0.299 * Yr + 0.587 * Yg + 0.114 * Yb;
+
             checkBoxGrey.Checked = false;
+            checkBoxBin.Checked = false;    
         }
 
         private void CountChanels()
@@ -277,11 +280,9 @@ namespace Graphics_lab5
             DrawImage();
         }
 
-        private void buttonBin_Click(object sender, EventArgs e)
+        private void checkBoxBin_CheckedChanged(object sender, EventArgs e)
         {
-            bin = !bin;
-            binThreshold = 0.299 * Yr + 0.587 * Yg + 0.114 * Yb;
-
+            bin = checkBoxBin.Checked;
             DrawImage();
         }
     }
