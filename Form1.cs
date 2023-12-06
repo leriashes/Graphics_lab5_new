@@ -8,6 +8,7 @@ namespace Graphics_lab5
     public partial class mainForm : Form
     {
         private Bitmap img;
+        private Bitmap imgStart;
         private int cbr;
         private double ccn;
         private bool negative = false;
@@ -34,19 +35,24 @@ namespace Graphics_lab5
 
         private void LoadImage()
         {
+
+            imgStart = new Bitmap(pictureBox.Image);
+            img = new Bitmap(pictureBox.Image);
+
             cbr = 0;
             ccn = 1;
             negative = false;
             grey = false;
 
-            img = (Bitmap)pictureBox.Image;
-            
             brightChart.ChartAreas[0].AxisY.Maximum = DrawBrightBarChart() + 100;
+
+
             trackBarBrightness.Value = 0;
             trackBarContrast.Value = 0;
 
             countChanels();
 
+            checkBox1.Checked = false;
         }
 
         private void countChanels()
@@ -86,6 +92,9 @@ namespace Graphics_lab5
                 brightness[i] = 0;
             }
 
+            int[] mas = new int[16];
+            int j = 0;
+
             for (int y = 0; y < img_copy.Height; y++)
             {
                 for (int x = 0; x < img_copy.Width; x++)
@@ -94,6 +103,10 @@ namespace Graphics_lab5
 
                     double bright = 0.299 * pixel.R + 0.587 * pixel.G + 0.114 * pixel.B;
                     int res = Convert.ToInt32(Math.Round(bright));
+                    mas[j] = res;
+                    j++;
+                    if (j >= 16)
+                        j = 0;
 
                     brightness[res] += 1;
                 }
@@ -111,30 +124,13 @@ namespace Graphics_lab5
 
         private void TrackBarBrightness_MouseUp(object sender, MouseEventArgs e)
         {
-            Bitmap img_copy = new Bitmap(img);
-            
-
             if (negative)
-            {
                 cbr -= trackBarBrightness.Value;
-            }
             else
-            {
                 cbr += trackBarBrightness.Value;
-            }
 
-            for (int y = 0; y < img.Height; y++)
-            {
-                for (int x = 0; x < img.Width; x++)
-                {
-                    Color pixel = img.GetPixel(x, y);
-                    img_copy.SetPixel(x, y, CountPixel(pixel));
-                }
-            }
+            drawImage();
 
-            pictureBox.Image = img_copy;
-
-            DrawBrightBarChart();
             trackBarBrightness.Value = 0;
         }
 
@@ -149,12 +145,6 @@ namespace Graphics_lab5
                 R = 255 - R;
                 G = 255 - G;
                 B = 255 - B;
-            }
-
-            if (grey)
-            {
-                double bright = 0.299 * R + 0.587 * G + 0.114 * B;
-                R = G = B = Convert.ToInt32(Math.Round(bright));
             }
 
             return Color.FromArgb(pixel.A, NormalizeColor(R), NormalizeColor(G), NormalizeColor(B));
@@ -224,8 +214,6 @@ namespace Graphics_lab5
 
         private void TrackBarContrast_MouseUp(object sender, MouseEventArgs e)
         {
-            Bitmap img_copy = new Bitmap(img);
-
             if (trackBarContrast.Value < 0)
             {
                 if (ccn > 1 / 255)
@@ -241,19 +229,7 @@ namespace Graphics_lab5
                 }
             }
 
-            for (int y = 0; y < img_copy.Height; y++)
-            {
-                for (int x = 0; x < img_copy.Width; x++)
-                {
-                    Color pixel = img.GetPixel(x, y);
-
-                    img_copy.SetPixel(x, y, CountPixel(pixel));
-                }
-            }
-
-            pictureBox.Image = img_copy;
-
-            DrawBrightBarChart();
+            drawImage();
 
             trackBarContrast.Value = 0;
         }
@@ -261,50 +237,101 @@ namespace Graphics_lab5
         private void button1_Click(object sender, EventArgs e)
         {
             negative = !negative;
+            drawImage();
+        }
 
+        private void drawImage()
+        {
             Bitmap img_copy = new Bitmap(img);
 
-            for (int y = 0; y < img_copy.Height; y++)
+            for (int y = 0; y < img.Height; y++)
             {
-                for (int x = 0; x < img_copy.Width; x++)
+                for (int x = 0; x < img.Width; x++)
                 {
-                    Color pixel = img_copy.GetPixel(x, y);
+                    Color pixel = CountPixel(img.GetPixel(x, y));
 
-                    img_copy.SetPixel(x, y, CountPixel(pixel));
+                    if (grey)
+                    {
+                        double bright = 0.299 * pixel.R + 0.587 * pixel.G + 0.114 * pixel.B;
+                        int R, G, B;
+                        R = G = B = Convert.ToInt32(Math.Round(bright));
+
+                        pixel = Color.FromArgb(pixel.A, R, G, B);
+                    }
+
+                    img_copy.SetPixel(x, y, pixel);
                 }
             }
 
             pictureBox.Image = img_copy;
-
             DrawBrightBarChart();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            grey = !grey;
-
-            if (grey)
+            if (checkBox1.Checked)
             {
-                for (int y = 0; y < img.Height; y++)
-                {
-                    for (int x = 0; x < img.Width; x++)
-                    {
-                        Color pixel = img.GetPixel(x, y);
+                grey = true;
 
-                        img.SetPixel(x, y, CountPixel(pixel));
-                    }
-                }
+                //Bitmap img_copy = new Bitmap(img);
 
-                countChanels();
+                //for (int y = 0; y < img.Height; y++)
+                //{
+                //    for (int x = 0; x < img.Width; x++)
+                //    {
+                //        Color pixel = img.GetPixel(x, y);
 
-                pictureBox.Image = img;
+                //        double bright = 0.299 * pixel.R + 0.587 * pixel.G + 0.114 * pixel.B;
+                //        int R, G, B;
+                //        R = G = B = Convert.ToInt32(Math.Round(bright));
+
+                //        pixel = Color.FromArgb(pixel.A, R, G, B);
+
+                //        img.SetPixel(x, y, pixel);
+                //    }
+                //}
+
+                //countChanels();
+
+                //for (int y = 0; y < img.Height; y++)
+                //{
+                //    for (int x = 0; x < img.Width; x++)
+                //    {
+                //        Color pixel = img.GetPixel(x, y);
+
+                //        img_copy.SetPixel(x, y, CountPixel(pixel));
+                //    }
+                //}
+
+                //pictureBox.Image = img_copy;
+                //DrawBrightBarChart();
+
+                drawImage();
             }
-            
+            else
+            {
+                //img = new Bitmap(imgStart);
+                //Bitmap img_copy = new Bitmap(img);
 
-            grey = true;
+                grey = false;
 
+                drawImage();
 
-            DrawBrightBarChart();
+                //countChanels();
+
+                //for (int y = 0; y < img.Height; y++)
+                //{
+                //    for (int x = 0; x < img.Width; x++)
+                //    {
+                //        Color pixel = img.GetPixel(x, y);
+
+                //        img_copy.SetPixel(x, y, CountPixel(pixel));
+                //    }
+                //}
+
+                //pictureBox.Image = img_copy;
+                //DrawBrightBarChart();
+            }
         }
     }
 }
