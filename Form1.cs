@@ -297,12 +297,14 @@ namespace Graphics_lab5
         private void TrackBarBin_ValueChanged(object sender, EventArgs e)
         {
             labelBin.Text = Convert.ToString(trackBarBin.Value);
+        }
 
-            RadioButton2_CheckedChanged(sender, e);
-
-            if (radioButton2.Checked)
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
             {
-                DrawImage();
+                if (bin)
+                    DrawImage();
             }
         }
 
@@ -311,6 +313,9 @@ namespace Graphics_lab5
             if (radioButton2.Checked)
             {
                 binThreshold = trackBarBin.Value;
+
+                if (bin)
+                    DrawImage();
             }
         }
 
@@ -318,7 +323,10 @@ namespace Graphics_lab5
         {
             if (radioButton2.Checked)
             {
-                DrawImage();
+                binThreshold = trackBarBin.Value;
+
+                if (bin)
+                    DrawImage();
             }
         }
 
@@ -368,5 +376,6 @@ namespace Graphics_lab5
 
             binThreshold = 0.299 * Convert.ToInt32(Math.Round(r)) + 0.587 * Convert.ToInt32(Math.Round(g)) + 0.114 * Convert.ToInt32(Math.Round(b));
         }
+
     }
 }
