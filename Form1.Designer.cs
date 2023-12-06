@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,8 +46,8 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.labelContrast = new System.Windows.Forms.Label();
             this.trackBarContrast = new System.Windows.Forms.TrackBar();
-            this.button1 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.buttonNegative = new System.Windows.Forms.Button();
+            this.checkBoxGrey = new System.Windows.Forms.CheckBox();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.brightChart)).BeginInit();
@@ -103,27 +103,27 @@
             this.brightChart.BackColor = System.Drawing.Color.Transparent;
             this.brightChart.BackSecondaryColor = System.Drawing.Color.White;
             this.brightChart.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea4.AxisX.Interval = 255D;
-            chartArea4.AxisX.Maximum = 255D;
-            chartArea4.AxisX.Minimum = 0D;
-            chartArea4.AxisX2.LineColor = System.Drawing.Color.Transparent;
-            chartArea4.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-            chartArea4.AxisY.Interval = 1000D;
-            chartArea4.AxisY.LineColor = System.Drawing.Color.Transparent;
-            chartArea4.AxisY.Minimum = 0D;
-            chartArea4.AxisY2.LineColor = System.Drawing.Color.Transparent;
-            chartArea4.BackColor = System.Drawing.Color.Transparent;
-            chartArea4.BorderColor = System.Drawing.Color.Transparent;
-            chartArea4.Name = "ChartArea1";
-            this.brightChart.ChartAreas.Add(chartArea4);
+            chartArea2.AxisX.Interval = 255D;
+            chartArea2.AxisX.Maximum = 255D;
+            chartArea2.AxisX.Minimum = 0D;
+            chartArea2.AxisX2.LineColor = System.Drawing.Color.Transparent;
+            chartArea2.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea2.AxisY.Interval = 1000D;
+            chartArea2.AxisY.LineColor = System.Drawing.Color.Transparent;
+            chartArea2.AxisY.Minimum = 0D;
+            chartArea2.AxisY2.LineColor = System.Drawing.Color.Transparent;
+            chartArea2.BackColor = System.Drawing.Color.Transparent;
+            chartArea2.BorderColor = System.Drawing.Color.Transparent;
+            chartArea2.Name = "ChartArea1";
+            this.brightChart.ChartAreas.Add(chartArea2);
             this.brightChart.Location = new System.Drawing.Point(6, 19);
             this.brightChart.Name = "brightChart";
             this.brightChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            series4.Name = "Series1";
-            this.brightChart.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            series2.Name = "Series1";
+            this.brightChart.Series.Add(series2);
             this.brightChart.Size = new System.Drawing.Size(694, 302);
             this.brightChart.TabIndex = 2;
             this.brightChart.Text = "chart1";
@@ -219,26 +219,26 @@
             this.trackBarContrast.ValueChanged += new System.EventHandler(this.TrackBarContrast_ValueChanged);
             this.trackBarContrast.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TrackBarContrast_MouseUp);
             // 
-            // button1
+            // buttonNegative
             // 
-            this.button1.Location = new System.Drawing.Point(12, 436);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Негатив";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonNegative.Location = new System.Drawing.Point(12, 436);
+            this.buttonNegative.Name = "buttonNegative";
+            this.buttonNegative.Size = new System.Drawing.Size(75, 23);
+            this.buttonNegative.TabIndex = 8;
+            this.buttonNegative.Text = "Негатив";
+            this.buttonNegative.UseVisualStyleBackColor = true;
+            this.buttonNegative.Click += new System.EventHandler(this.ButtonNegative_Click);
             // 
-            // checkBox1
+            // checkBoxGrey
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 465);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(106, 17);
-            this.checkBox1.TabIndex = 10;
-            this.checkBox1.Text = "Оттенки серого";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBoxGrey.AutoSize = true;
+            this.checkBoxGrey.Location = new System.Drawing.Point(12, 465);
+            this.checkBoxGrey.Name = "checkBoxGrey";
+            this.checkBoxGrey.Size = new System.Drawing.Size(106, 17);
+            this.checkBoxGrey.TabIndex = 10;
+            this.checkBoxGrey.Text = "Оттенки серого";
+            this.checkBoxGrey.UseVisualStyleBackColor = true;
+            this.checkBoxGrey.CheckedChanged += new System.EventHandler(this.CheckBoxGrey_CheckedChanged);
             // 
             // mainForm
             // 
@@ -246,8 +246,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1285, 512);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.checkBoxGrey);
+            this.Controls.Add(this.buttonNegative);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -290,8 +290,8 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label labelContrast;
         private System.Windows.Forms.TrackBar trackBarContrast;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button buttonNegative;
+        private System.Windows.Forms.CheckBox checkBoxGrey;
     }
 }
 
