@@ -23,26 +23,27 @@ namespace Graphics_lab5
         public mainForm()
         {
             InitializeComponent();
-            loadImage();
+            LoadImage();
         }
 
-        private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 pictureBox.Image = new Bitmap(openFileDialog.FileName);
-                loadImage();
+                LoadImage();
             }
         }
 
-        private void loadImage()
+        private void LoadImage()
         {
             img = (Bitmap)pictureBox.Image;
             
-            brightChart.ChartAreas[0].AxisY.Maximum = drawBrightBarChart() + 100;
+            brightChart.ChartAreas[0].AxisY.Maximum = DrawBrightBarChart() + 100;
+            trackBarBrightness.Value = 0;
         }
 
-        private int drawBrightBarChart()
+        private int DrawBrightBarChart()
         {
             Bitmap img_copy = (Bitmap)pictureBox.Image;
 
@@ -76,7 +77,7 @@ namespace Graphics_lab5
             return brightness.Max();
         }
 
-        private void trackBarBrightness_MouseUp(object sender, MouseEventArgs e)
+        private void TrackBarBrightness_MouseUp(object sender, MouseEventArgs e)
         {
             Bitmap img_copy = new Bitmap(img);
             cbr = trackBarBrightness.Value;
@@ -86,23 +87,21 @@ namespace Graphics_lab5
                 for (int x = 0; x < img.Width; x++)
                 {
                     Color pixel = img.GetPixel(x, y);
-                    img_copy.SetPixel(x, y, countPixel(pixel));
+                    img_copy.SetPixel(x, y, CountPixel(pixel));
                 }
             }
 
             pictureBox.Image = img_copy;
 
-            drawBrightBarChart();
-
-            //trackBarBrightness.Value = 0;
+            DrawBrightBarChart();
         }
 
-        private Color countPixel(Color pixel)
+        private Color CountPixel(Color pixel)
         {
-            return Color.FromArgb(pixel.A, countColor(pixel.R), countColor(pixel.G), countColor(pixel.B));
+            return Color.FromArgb(pixel.A, CountColor(pixel.R), CountColor(pixel.G), CountColor(pixel.B));
         }
 
-        private int countColor(byte color)
+        private int CountColor(byte color)
         {
             int new_color = color * ccn + cbr;
 
@@ -118,7 +117,7 @@ namespace Graphics_lab5
             return new_color;
         }
 
-        private void trackBarBrightness_ValueChanged(object sender, EventArgs e)
+        private void TrackBarBrightness_ValueChanged(object sender, EventArgs e)
         {
             labelBrightness.Text = Convert.ToString(trackBarBrightness.Value);
 
@@ -128,7 +127,7 @@ namespace Graphics_lab5
             }
         }
 
-        private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -142,6 +141,32 @@ namespace Graphics_lab5
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void TrackBarContrast_ValueChanged(object sender, EventArgs e)
+        {
+            int value = trackBarContrast.Value;
+
+            if (value < 0)
+            {
+                value = -value + 1;
+            }
+            else
+            {
+                value += 1;
+            }
+
+            labelContrast.Text = Convert.ToString(value);
+
+            if (trackBarContrast.Value < 0)
+            {
+                labelContrast.Text = "1/" + labelContrast.Text;
+            }
+        }
+
+        private void TrackBarContrast_MouseUp(object sender, MouseEventArgs e)
+        {
+            trackBarContrast.Value = 0;
         }
     }
 }
