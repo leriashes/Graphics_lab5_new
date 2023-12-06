@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,6 +49,12 @@
             this.buttonNegative = new System.Windows.Forms.Button();
             this.checkBoxGrey = new System.Windows.Forms.CheckBox();
             this.checkBoxBin = new System.Windows.Forms.CheckBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.trackBarBin = new System.Windows.Forms.TrackBar();
+            this.labelBin = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.brightChart)).BeginInit();
@@ -58,6 +64,8 @@
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarContrast)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarBin)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -104,27 +112,27 @@
             this.brightChart.BackColor = System.Drawing.Color.Transparent;
             this.brightChart.BackSecondaryColor = System.Drawing.Color.White;
             this.brightChart.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX.Interval = 255D;
-            chartArea2.AxisX.Maximum = 255D;
-            chartArea2.AxisX.Minimum = 0D;
-            chartArea2.AxisX2.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-            chartArea2.AxisY.Interval = 1000D;
-            chartArea2.AxisY.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY.Minimum = 0D;
-            chartArea2.AxisY2.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.BackColor = System.Drawing.Color.Transparent;
-            chartArea2.BorderColor = System.Drawing.Color.Transparent;
-            chartArea2.Name = "ChartArea1";
-            this.brightChart.ChartAreas.Add(chartArea2);
+            chartArea3.AxisX.Interval = 255D;
+            chartArea3.AxisX.Maximum = 255D;
+            chartArea3.AxisX.Minimum = 0D;
+            chartArea3.AxisX2.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea3.AxisY.Interval = 1000D;
+            chartArea3.AxisY.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY.Minimum = 0D;
+            chartArea3.AxisY2.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.BackColor = System.Drawing.Color.Transparent;
+            chartArea3.BorderColor = System.Drawing.Color.Transparent;
+            chartArea3.Name = "ChartArea1";
+            this.brightChart.ChartAreas.Add(chartArea3);
             this.brightChart.Location = new System.Drawing.Point(6, 19);
             this.brightChart.Name = "brightChart";
             this.brightChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            series2.Name = "Series1";
-            this.brightChart.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            series3.Name = "Series1";
+            this.brightChart.Series.Add(series3);
             this.brightChart.Size = new System.Drawing.Size(694, 302);
             this.brightChart.TabIndex = 2;
             this.brightChart.Text = "chart1";
@@ -224,7 +232,7 @@
             // 
             this.buttonNegative.Location = new System.Drawing.Point(12, 436);
             this.buttonNegative.Name = "buttonNegative";
-            this.buttonNegative.Size = new System.Drawing.Size(75, 23);
+            this.buttonNegative.Size = new System.Drawing.Size(106, 23);
             this.buttonNegative.TabIndex = 8;
             this.buttonNegative.Text = "Негатив";
             this.buttonNegative.UseVisualStyleBackColor = true;
@@ -244,13 +252,82 @@
             // checkBoxBin
             // 
             this.checkBoxBin.AutoSize = true;
-            this.checkBoxBin.Location = new System.Drawing.Point(124, 465);
+            this.checkBoxBin.Location = new System.Drawing.Point(6, 10);
             this.checkBoxBin.Name = "checkBoxBin";
             this.checkBoxBin.Size = new System.Drawing.Size(93, 17);
             this.checkBoxBin.TabIndex = 12;
             this.checkBoxBin.Text = "Бинаризация";
             this.checkBoxBin.UseVisualStyleBackColor = true;
-            this.checkBoxBin.CheckedChanged += new System.EventHandler(this.checkBoxBin_CheckedChanged);
+            this.checkBoxBin.CheckedChanged += new System.EventHandler(this.CheckBoxBin_CheckedChanged);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.labelBin);
+            this.groupBox5.Controls.Add(this.trackBarBin);
+            this.groupBox5.Controls.Add(this.radioButton3);
+            this.groupBox5.Controls.Add(this.radioButton2);
+            this.groupBox5.Controls.Add(this.radioButton1);
+            this.groupBox5.Controls.Add(this.checkBoxBin);
+            this.groupBox5.Location = new System.Drawing.Point(124, 430);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(455, 76);
+            this.groupBox5.TabIndex = 13;
+            this.groupBox5.TabStop = false;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(105, 10);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(118, 17);
+            this.radioButton1.TabIndex = 13;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Среднее значение";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(105, 33);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(67, 17);
+            this.radioButton2.TabIndex = 14;
+            this.radioButton2.Text = "Вручную";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(229, 9);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(79, 17);
+            this.radioButton3.TabIndex = 15;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Метод Оцу";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // trackBarBin
+            // 
+            this.trackBarBin.LargeChange = 25;
+            this.trackBarBin.Location = new System.Drawing.Point(178, 28);
+            this.trackBarBin.Maximum = 255;
+            this.trackBarBin.Name = "trackBarBin";
+            this.trackBarBin.Size = new System.Drawing.Size(225, 45);
+            this.trackBarBin.TabIndex = 6;
+            this.trackBarBin.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBarBin.ValueChanged += new System.EventHandler(this.TrackBarBin_ValueChanged);
+            this.trackBarBin.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TrackBarBin_MouseUp);
+            // 
+            // labelBin
+            // 
+            this.labelBin.AutoSize = true;
+            this.labelBin.Location = new System.Drawing.Point(408, 31);
+            this.labelBin.Name = "labelBin";
+            this.labelBin.Size = new System.Drawing.Size(13, 13);
+            this.labelBin.TabIndex = 6;
+            this.labelBin.Text = "1";
             // 
             // mainForm
             // 
@@ -258,7 +335,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1285, 512);
-            this.Controls.Add(this.checkBoxBin);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.checkBoxGrey);
             this.Controls.Add(this.buttonNegative);
             this.Controls.Add(this.groupBox4);
@@ -281,6 +358,9 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarContrast)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarBin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,6 +386,12 @@
         private System.Windows.Forms.Button buttonNegative;
         private System.Windows.Forms.CheckBox checkBoxGrey;
         private System.Windows.Forms.CheckBox checkBoxBin;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label labelBin;
+        private System.Windows.Forms.TrackBar trackBarBin;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }
 

@@ -235,6 +235,14 @@ namespace Graphics_lab5
         {
             Bitmap img_copy = new Bitmap(img);
 
+            if (bin)
+            {
+                if (radioButton1.Checked)
+                {
+                    CountAveTreshold();
+                }
+            }
+
             for (int y = 0; y < img.Height; y++)
             {
                 for (int x = 0; x < img.Width; x++)
@@ -280,10 +288,85 @@ namespace Graphics_lab5
             DrawImage();
         }
 
-        private void checkBoxBin_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxBin_CheckedChanged(object sender, EventArgs e)
         {
             bin = checkBoxBin.Checked;
             DrawImage();
+        }
+
+        private void TrackBarBin_ValueChanged(object sender, EventArgs e)
+        {
+            labelBin.Text = Convert.ToString(trackBarBin.Value);
+
+            RadioButton2_CheckedChanged(sender, e);
+
+            if (radioButton2.Checked)
+            {
+                DrawImage();
+            }
+        }
+
+        private void RadioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                binThreshold = trackBarBin.Value;
+            }
+        }
+
+        private void TrackBarBin_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                DrawImage();
+            }
+        }
+
+        private void CountAveTreshold()
+        {
+            double r = 0;
+            double g = 0;
+            double b = 0;
+
+            Bitmap img_copy = new Bitmap(img);
+
+            for (int y = 0; y < img.Height; y++)
+            {
+                for (int x = 0; x < img.Width; x++)
+                {
+                    Color pixel = CountPixel(img.GetPixel(x, y));
+
+                    if (grey)
+                    {
+                        int brightness = Convert.ToInt32(Math.Round(0.299 * pixel.R + 0.587 * pixel.G + 0.114 * pixel.B));
+
+                        int R, G, B;
+                        R = G = B = brightness;
+
+                        pixel = Color.FromArgb(pixel.A, NormalizeColor(R), NormalizeColor(G), NormalizeColor(B));
+                    }
+
+                    img_copy.SetPixel(x, y, pixel);
+                }
+            }
+
+
+            for (int y = 0; y < img_copy.Height; y++)
+            {
+                for (int x = 0; x < img_copy.Width; x++)
+                {
+                    Color pixel = img_copy.GetPixel(x, y);
+                    r += pixel.R;
+                    g += pixel.G;
+                    b += pixel.B;
+                }
+            }
+
+            r /= img.Height * img.Width;
+            g /= img.Height * img.Width;
+            b /= img.Height * img.Width;
+
+            binThreshold = 0.299 * Convert.ToInt32(Math.Round(r)) + 0.587 * Convert.ToInt32(Math.Round(g)) + 0.114 * Convert.ToInt32(Math.Round(b));
         }
     }
 }
