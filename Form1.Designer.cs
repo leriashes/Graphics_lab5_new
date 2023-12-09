@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,28 +111,28 @@
             this.brightChart.BackColor = System.Drawing.Color.Transparent;
             this.brightChart.BackSecondaryColor = System.Drawing.Color.White;
             this.brightChart.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX.Interval = 255D;
-            chartArea2.AxisX.Maximum = 255D;
-            chartArea2.AxisX.Minimum = 0D;
-            chartArea2.AxisX2.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-            chartArea2.AxisY.Interval = 1000D;
-            chartArea2.AxisY.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY.Minimum = 0D;
-            chartArea2.AxisY2.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.BackColor = System.Drawing.Color.Transparent;
-            chartArea2.BorderColor = System.Drawing.Color.Transparent;
-            chartArea2.Name = "ChartArea1";
-            this.brightChart.ChartAreas.Add(chartArea2);
+            chartArea1.AxisX.Interval = 255D;
+            chartArea1.AxisX.Maximum = 255D;
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.AxisX2.LineColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea1.AxisY.Interval = 1000D;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisY.Minimum = 0D;
+            chartArea1.AxisY2.LineColor = System.Drawing.Color.Transparent;
+            chartArea1.BackColor = System.Drawing.Color.Transparent;
+            chartArea1.BorderColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            this.brightChart.ChartAreas.Add(chartArea1);
             this.brightChart.Location = new System.Drawing.Point(6, 19);
             this.brightChart.Name = "brightChart";
             this.brightChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            series2.Name = "Series1";
-            this.brightChart.Series.Add(series2);
-            this.brightChart.Size = new System.Drawing.Size(694, 302);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            series1.Name = "Series1";
+            this.brightChart.Series.Add(series1);
+            this.brightChart.Size = new System.Drawing.Size(694, 296);
             this.brightChart.TabIndex = 2;
             this.brightChart.Text = "chart1";
             // 
@@ -141,7 +141,7 @@
             this.groupBox1.Controls.Add(this.brightChart);
             this.groupBox1.Location = new System.Drawing.Point(585, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(688, 327);
+            this.groupBox1.Size = new System.Drawing.Size(688, 321);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Гистограмма яркости";
@@ -172,7 +172,7 @@
             // labelBrightness
             // 
             this.labelBrightness.AutoSize = true;
-            this.labelBrightness.Location = new System.Drawing.Point(644, 21);
+            this.labelBrightness.Location = new System.Drawing.Point(644, 22);
             this.labelBrightness.Name = "labelBrightness";
             this.labelBrightness.Size = new System.Drawing.Size(13, 13);
             this.labelBrightness.TabIndex = 5;
@@ -187,9 +187,9 @@
             // 
             this.groupBox3.Controls.Add(this.labelBrightness);
             this.groupBox3.Controls.Add(this.trackBarBrightness);
-            this.groupBox3.Location = new System.Drawing.Point(585, 360);
+            this.groupBox3.Location = new System.Drawing.Point(585, 354);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(688, 70);
+            this.groupBox3.Size = new System.Drawing.Size(688, 76);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Яркость";
@@ -198,9 +198,9 @@
             // 
             this.groupBox4.Controls.Add(this.labelContrast);
             this.groupBox4.Controls.Add(this.trackBarContrast);
-            this.groupBox4.Location = new System.Drawing.Point(585, 436);
+            this.groupBox4.Location = new System.Drawing.Point(585, 430);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(688, 70);
+            this.groupBox4.Size = new System.Drawing.Size(688, 76);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Контрастность";
@@ -331,7 +331,11 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1301, 551);
+            this.MinimumSize = new System.Drawing.Size(1301, 551);
             this.Name = "mainForm";
             this.Text = "Лабораторная работа 5";
             this.menuStrip.ResumeLayout(false);
