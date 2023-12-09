@@ -253,25 +253,27 @@ namespace Graphics_lab5
                     {
                         int brightness = Convert.ToInt32(Math.Round(0.299 * pixel.R + 0.587 * pixel.G + 0.114 * pixel.B));
 
-                        int R, G, B;
+                        int color;
 
                         if (bin)
                         {
                             if (brightness > binThreshold)
                             {
-                                R = G = B = 255;
+                                color = 255;
                             }
                             else
                             {
-                                R = G = B = 0;
+                                color = 0;
                             }
                         }
                         else
                         {
-                            R = G = B = brightness;
+                            color = brightness;
                         }
 
-                        pixel = Color.FromArgb(pixel.A, NormalizeColor(R), NormalizeColor(G), NormalizeColor(B));
+                        color = NormalizeColor(color);
+
+                        pixel = Color.FromArgb(pixel.A, color, color, color);
                     }
 
                     img_copy.SetPixel(x, y, pixel);
@@ -332,9 +334,7 @@ namespace Graphics_lab5
 
         private void CountAveTreshold()
         {
-            double r = 0;
-            double g = 0;
-            double b = 0;
+            double color = 0;
 
             Bitmap img_copy = new Bitmap(img);
 
@@ -346,12 +346,9 @@ namespace Graphics_lab5
 
                     if (grey)
                     {
-                        int brightness = Convert.ToInt32(Math.Round(0.299 * pixel.R + 0.587 * pixel.G + 0.114 * pixel.B));
+                        int brightness = NormalizeColor(Convert.ToInt32(Math.Round(0.299 * pixel.R + 0.587 * pixel.G + 0.114 * pixel.B)));
 
-                        int R, G, B;
-                        R = G = B = brightness;
-
-                        pixel = Color.FromArgb(pixel.A, NormalizeColor(R), NormalizeColor(G), NormalizeColor(B));
+                        pixel = Color.FromArgb(pixel.A, brightness, brightness, brightness);
                     }
 
                     img_copy.SetPixel(x, y, pixel);
@@ -364,17 +361,13 @@ namespace Graphics_lab5
                 for (int x = 0; x < img_copy.Width; x++)
                 {
                     Color pixel = img_copy.GetPixel(x, y);
-                    r += pixel.R;
-                    g += pixel.G;
-                    b += pixel.B;
+                    color += pixel.R;
                 }
             }
 
-            r /= img.Height * img.Width;
-            g /= img.Height * img.Width;
-            b /= img.Height * img.Width;
+            color /= img.Height * img.Width;
 
-            binThreshold = 0.299 * Convert.ToInt32(Math.Round(r)) + 0.587 * Convert.ToInt32(Math.Round(g)) + 0.114 * Convert.ToInt32(Math.Round(b));
+            binThreshold = Convert.ToInt32(Math.Round(color));
         }
 
     }
