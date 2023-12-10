@@ -8,6 +8,7 @@ namespace Graphics_lab5
     public partial class mainForm : Form
     {
         private Bitmap img;
+        private Bitmap imgStart;
         private int cbr;
         private double ccn;
         private bool negative = false;
@@ -38,6 +39,7 @@ namespace Graphics_lab5
         private void LoadImage()
         {
             img = new Bitmap(pictureBox.Image);
+            imgStart = new Bitmap(pictureBox.Image);
 
             cbr = 0;
             ccn = 1;
@@ -372,5 +374,10 @@ namespace Graphics_lab5
             binThreshold = Convert.ToInt32(Math.Round(color));
         }
 
+        private void ButtonRestart_Click(object sender, EventArgs e)
+        {
+            pictureBox.Image = imgStart;
+            LoadImage();
+        }
     }
 }
