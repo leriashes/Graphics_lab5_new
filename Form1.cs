@@ -209,19 +209,17 @@ namespace Graphics_lab5
         {
             if (trackBarContrast.Value < 0)
             {
-                ccn /= -trackBarContrast.Value + 1;
-                //if (ccn > 1 / 1000000)
-                //{
-                //    ccn /= -trackBarContrast.Value + 1;
-                //}
+                if (ccn > 1 / 1000000)
+                {
+                    ccn /= -trackBarContrast.Value + 1;
+                }
             }
             else
             {
-                ccn *= trackBarContrast.Value + 1;
-                //if (ccn < 1000000)
-                //{
-                //    ccn *= trackBarContrast.Value + 1;
-                //}
+                if (ccn < 1000000)
+                {
+                    ccn *= trackBarContrast.Value + 1;
+                }
             }
 
             DrawImage();
