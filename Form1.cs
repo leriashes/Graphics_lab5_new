@@ -17,6 +17,7 @@ namespace Graphics_lab5
         private int Yr;
         private int Yg;
         private int Yb;
+        private int Ys;
         private double binThreshold = 0;
 
         public mainForm()
@@ -81,6 +82,7 @@ namespace Graphics_lab5
             Yr = Convert.ToInt32(Math.Round(r));
             Yg = Convert.ToInt32(Math.Round(g));
             Yb = Convert.ToInt32(Math.Round(b));
+            Ys = Convert.ToInt32(Math.Round(0.299 * Yr + 0.587 * Yg + 0.114 * Yb));
         }
 
         private int DrawBrightBarChart()
@@ -127,9 +129,9 @@ namespace Graphics_lab5
 
         private Color CountPixel(Color pixel)
         {
-            int R = Convert.ToInt32(Math.Round(pixel.R * ccn + cbr + (1 - ccn) * Yr));
-            int G = Convert.ToInt32(Math.Round(pixel.G * ccn + cbr + (1 - ccn) * Yg));
-            int B = Convert.ToInt32(Math.Round(pixel.B * ccn + cbr + (1 - ccn) * Yb));
+            int R = Convert.ToInt32(Math.Round(pixel.R * ccn + cbr + (1 - ccn) * Ys));
+            int G = Convert.ToInt32(Math.Round(pixel.G * ccn + cbr + (1 - ccn) * Ys));
+            int B = Convert.ToInt32(Math.Round(pixel.B * ccn + cbr + (1 - ccn) * Ys));
 
             if (negative)
             {
@@ -207,17 +209,19 @@ namespace Graphics_lab5
         {
             if (trackBarContrast.Value < 0)
             {
-                if (ccn > 1 / 255)
-                {
-                    ccn /= -trackBarContrast.Value + 1;
-                }
+                ccn /= -trackBarContrast.Value + 1;
+                //if (ccn > 1 / 1000000)
+                //{
+                //    ccn /= -trackBarContrast.Value + 1;
+                //}
             }
             else
             {
-                if (ccn < 255)
-                {
-                    ccn *= trackBarContrast.Value + 1;
-                }
+                ccn *= trackBarContrast.Value + 1;
+                //if (ccn < 1000000)
+                //{
+                //    ccn *= trackBarContrast.Value + 1;
+                //}
             }
 
             DrawImage();
