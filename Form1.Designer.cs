@@ -74,7 +74,7 @@
             this.saveFileToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1285, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1014, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -114,25 +114,32 @@
             chartArea1.AxisX.Interval = 255D;
             chartArea1.AxisX.Maximum = 255D;
             chartArea1.AxisX.Minimum = 0D;
+            chartArea1.AxisX2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
             chartArea1.AxisX2.LineColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisX2.LineWidth = 0;
             chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
             chartArea1.AxisY.Interval = 1000D;
             chartArea1.AxisY.LineColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisY.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
+            chartArea1.AxisY.LineWidth = 0;
             chartArea1.AxisY.Minimum = 0D;
+            chartArea1.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
             chartArea1.AxisY2.LineColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisY2.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
+            chartArea1.AxisY2.LineWidth = 0;
             chartArea1.BackColor = System.Drawing.Color.Transparent;
             chartArea1.BorderColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
+            chartArea1.ShadowColor = System.Drawing.Color.White;
             this.brightChart.ChartAreas.Add(chartArea1);
             this.brightChart.Location = new System.Drawing.Point(6, 19);
             this.brightChart.Name = "brightChart";
             this.brightChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
             series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            series1.Color = System.Drawing.Color.Red;
             series1.Name = "Series1";
             this.brightChart.Series.Add(series1);
-            this.brightChart.Size = new System.Drawing.Size(694, 296);
+            this.brightChart.Size = new System.Drawing.Size(260, 454);
             this.brightChart.TabIndex = 2;
             this.brightChart.Text = "chart1";
             // 
@@ -141,7 +148,7 @@
             this.groupBox1.Controls.Add(this.brightChart);
             this.groupBox1.Location = new System.Drawing.Point(585, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(688, 321);
+            this.groupBox1.Size = new System.Drawing.Size(261, 479);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Гистограмма яркости";
@@ -158,12 +165,14 @@
             // 
             // trackBarBrightness
             // 
+            this.trackBarBrightness.AutoSize = false;
             this.trackBarBrightness.LargeChange = 51;
-            this.trackBarBrightness.Location = new System.Drawing.Point(6, 19);
+            this.trackBarBrightness.Location = new System.Drawing.Point(14, 15);
             this.trackBarBrightness.Maximum = 255;
             this.trackBarBrightness.Minimum = -255;
             this.trackBarBrightness.Name = "trackBarBrightness";
-            this.trackBarBrightness.Size = new System.Drawing.Size(632, 45);
+            this.trackBarBrightness.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBarBrightness.Size = new System.Drawing.Size(28, 458);
             this.trackBarBrightness.TabIndex = 4;
             this.trackBarBrightness.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarBrightness.ValueChanged += new System.EventHandler(this.TrackBarBrightness_ValueChanged);
@@ -172,7 +181,7 @@
             // labelBrightness
             // 
             this.labelBrightness.AutoSize = true;
-            this.labelBrightness.Location = new System.Drawing.Point(644, 22);
+            this.labelBrightness.Location = new System.Drawing.Point(36, 238);
             this.labelBrightness.Name = "labelBrightness";
             this.labelBrightness.Size = new System.Drawing.Size(13, 13);
             this.labelBrightness.TabIndex = 5;
@@ -187,9 +196,9 @@
             // 
             this.groupBox3.Controls.Add(this.labelBrightness);
             this.groupBox3.Controls.Add(this.trackBarBrightness);
-            this.groupBox3.Location = new System.Drawing.Point(585, 354);
+            this.groupBox3.Location = new System.Drawing.Point(852, 27);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(688, 76);
+            this.groupBox3.Size = new System.Drawing.Size(74, 479);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Яркость";
@@ -198,17 +207,17 @@
             // 
             this.groupBox4.Controls.Add(this.labelContrast);
             this.groupBox4.Controls.Add(this.trackBarContrast);
-            this.groupBox4.Location = new System.Drawing.Point(585, 430);
+            this.groupBox4.Location = new System.Drawing.Point(932, 27);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(688, 76);
+            this.groupBox4.Size = new System.Drawing.Size(74, 479);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Контрастность";
+            this.groupBox4.Text = "Контраст";
             // 
             // labelContrast
             // 
             this.labelContrast.AutoSize = true;
-            this.labelContrast.Location = new System.Drawing.Point(644, 22);
+            this.labelContrast.Location = new System.Drawing.Point(36, 238);
             this.labelContrast.Name = "labelContrast";
             this.labelContrast.Size = new System.Drawing.Size(13, 13);
             this.labelContrast.TabIndex = 5;
@@ -216,12 +225,14 @@
             // 
             // trackBarContrast
             // 
+            this.trackBarContrast.AutoSize = false;
             this.trackBarContrast.LargeChange = 25;
-            this.trackBarContrast.Location = new System.Drawing.Point(6, 19);
-            this.trackBarContrast.Maximum = 99;
-            this.trackBarContrast.Minimum = -99;
+            this.trackBarContrast.Location = new System.Drawing.Point(14, 15);
+            this.trackBarContrast.Maximum = 255;
+            this.trackBarContrast.Minimum = -255;
             this.trackBarContrast.Name = "trackBarContrast";
-            this.trackBarContrast.Size = new System.Drawing.Size(632, 45);
+            this.trackBarContrast.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBarContrast.Size = new System.Drawing.Size(28, 458);
             this.trackBarContrast.TabIndex = 4;
             this.trackBarContrast.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarContrast.ValueChanged += new System.EventHandler(this.TrackBarContrast_ValueChanged);
@@ -322,7 +333,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1285, 512);
+            this.ClientSize = new System.Drawing.Size(1014, 512);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.checkBoxGrey);
             this.Controls.Add(this.buttonNegative);
@@ -334,8 +345,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1301, 551);
-            this.MinimumSize = new System.Drawing.Size(1301, 551);
+            this.MaximumSize = new System.Drawing.Size(1030, 551);
+            this.MinimumSize = new System.Drawing.Size(1030, 551);
             this.Name = "mainForm";
             this.Text = "Лабораторная работа 5";
             this.menuStrip.ResumeLayout(false);

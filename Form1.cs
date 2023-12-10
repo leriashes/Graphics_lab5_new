@@ -129,9 +129,9 @@ namespace Graphics_lab5
 
         private Color CountPixel(Color pixel)
         {
-            int R = Convert.ToInt32(Math.Round(pixel.R * ccn + cbr + (1 - ccn) * Ys));
-            int G = Convert.ToInt32(Math.Round(pixel.G * ccn + cbr + (1 - ccn) * Ys));
-            int B = Convert.ToInt32(Math.Round(pixel.B * ccn + cbr + (1 - ccn) * Ys));
+            int R = Convert.ToInt32(pixel.R * ccn + cbr + (1 - ccn) * Ys);
+            int G = Convert.ToInt32(pixel.G * ccn + cbr + (1 - ccn) * Ys);
+            int B = Convert.ToInt32(pixel.B * ccn + cbr + (1 - ccn) * Ys);
 
             if (negative)
             {
@@ -209,14 +209,14 @@ namespace Graphics_lab5
         {
             if (trackBarContrast.Value < 0)
             {
-                if (ccn > 1 / 1000000)
+                if (ccn > (double)1 / 255)
                 {
                     ccn /= -trackBarContrast.Value + 1;
                 }
             }
             else
             {
-                if (ccn < 1000000)
+                if (ccn < 255)
                 {
                     ccn *= trackBarContrast.Value + 1;
                 }
